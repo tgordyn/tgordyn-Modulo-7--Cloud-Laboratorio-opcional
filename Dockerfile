@@ -3,23 +3,24 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Copiar archivos de configuración
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY webpack.config.js ./
+COPY .babelrc ./
+
+# Copiar el código fuente
 COPY ./src ./src
 
+# Instalar dependencias y construir el proyecto
 RUN npm ci
-RUN ls -la && echo "=== SRC ===" && ls -la src && \
-  echo "=== RUNNING BUILD ===" && npm run build
+RUN npm run build
 
-
-# Etapa 2: nginx
+# Etapa 2: servidor web con nginx
 FROM nginx:alpine
 
-# ✅ Esta línea requiere que hayas definido "AS builder" antes
+# Copiar el build al directorio público de nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Config para SPA: redirige todas las rutas a index.html
+# Configuración de Nginx para manejar rutas del tipo SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-COPY .babelrc ./
