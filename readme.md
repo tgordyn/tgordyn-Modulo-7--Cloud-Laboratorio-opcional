@@ -1,7 +1,7 @@
 # Módulo 7 -- Cloud Laboratorio Opcional
 
 ## Despliegue de forma automatizada en Render usando Docker
-Usamos como base un proyecto anterior que consiste en una aplicación de filtrado de miembros de Github según la organización que indique el usuario y realizamos el deploy de forma automatizada en Render usando Docker, https://tgordyn.github.io/tgordyn-Modulo-7--Cloud-Laboratorio-automatizado/](https://tgordyn-modulo-7-cloud-laboratorio.onrender.com/
+Usamos como base un proyecto anterior que consiste en una aplicación de filtrado de miembros de Github según la organización que indique el usuario y realizamos el deploy de forma automatizada en Render usando Docker, https://tgordyn-modulo-7-cloud-laboratorio.onrender.com/
 
 Utilizar en el login las credenciales de user `admin` y pass `test`.
 
