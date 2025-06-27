@@ -14,7 +14,7 @@ module.exports = {
   stats: "errors-only",
   output: {
     filename: "[name].[chunkhash].js",
-    publicPath: "./",
+    publicPath: "/",
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
