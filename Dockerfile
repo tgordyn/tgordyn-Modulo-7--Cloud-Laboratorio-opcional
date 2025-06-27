@@ -9,7 +9,7 @@ COPY webpack.config.js ./
 COPY ./src ./src
 
 RUN npm ci
-RUN npm run build
+RUN npm run build --verbose
 
 # Etapa 2: nginx
 FROM nginx:alpine
