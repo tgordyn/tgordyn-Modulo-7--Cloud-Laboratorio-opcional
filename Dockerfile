@@ -1,18 +1,21 @@
-# Etapa 1: Build con imagen más liviana
-FROM node:18.20-alpine
+# Etapa 1: build
+FROM node:18-alpine AS builder
 
 WORKDIR /app
-COPY . .
 
-# Instalación sin cache y limpia
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY webpack.config.js ./
+COPY ./src ./src
+
 RUN npm ci
 RUN npm run build
 
-# Etapa 2: Servir con nginx también basado en Alpine
+# Etapa 2: nginx
 FROM nginx:alpine
 
-# Copiar el build generado
+# ✅ Esta línea requiere que hayas definido "AS builder" antes
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Configuración de nginx para SPA
+# Config para SPA: redirige todas las rutas a index.html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
